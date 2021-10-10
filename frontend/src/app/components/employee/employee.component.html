@@ -1,0 +1,45 @@
+<div class="container py-3">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Employee Managment</h2>
+    </div>
+    <div class="col ml-auto text-right">
+      <button type="button" class="btn btn-outline-success" (click)="onAddEmployee()">Add Employee</button>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card md-3">
+        <div class="card-body">
+          <h5 class="card-title">Victor Smirnov</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Developer</h6>
+          <span class="badge bg-success">Development</span>
+          <hr>
+          <button type="button" class="btn btn-sm btn-outline-primary">Edit</button>
+          <button type="button" class="btn btn-sm btn-outline-danger mx-2">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade show" [class.show]="showModal">
+  <div class="modal-dialog modal-dialog-centered modal-content" role="document">
+    <div class="modal-header">
+      <h5 class="modal-title">Add Employee</h5>
+      <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="onCloseModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form >
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Enter Name</label>
+          <input type="text" class="form-control" formControlName="name">
+          <small class="form-text text-danger">Please Enter Name.</small>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
