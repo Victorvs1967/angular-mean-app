@@ -4,6 +4,17 @@ const router = express.Router();
 
 const Employee = require('../models/employee.js');
 
+// GET API
+router.get('/', (req, res) => {
+  Employee.find((err, doc) => {
+    if (err) {
+      console.log(`Error in GET data ${err}`);
+    } else {
+      res.send(doc);
+    }
+  });
+});
+
 // GET single employee
 router.get('/:id', (req, res) => {
   if (ObjectId.isValid(req.params.id)) {
@@ -17,17 +28,6 @@ router.get('/:id', (req, res) => {
   } else {
     return res.status(400).send(` No record found with ${req.params.id}`);
   }
-});
-
-// GET API
-router.get('/', (req, res) => {
-  Employee.find((err, doc) => {
-    if (err) {
-      console.log(`Error in GET data ${err}`);
-    } else {
-      res.send(doc);
-    }
-  });
 });
 
 // POST API
