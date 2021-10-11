@@ -11,4 +11,10 @@ export class EmployeeService {
   constructor(private http: HttpClient) { }
 
   addEmployee = (emp: Employee) => this.http.post(environment.backUrl, emp);
+
+  getEmployeeList = () => this.http.get<Employee[]>(environment.backUrl);
+
+  deleteEmployee = (id: string) => this.http.delete(`${environment.backUrl}/${id}`);
+
+  updateEmployee = (emp: Employee) => this.http.put(`${environment.backUrl}/${emp._id}`, emp);
 }
