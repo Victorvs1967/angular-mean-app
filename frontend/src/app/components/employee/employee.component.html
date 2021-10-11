@@ -25,21 +25,37 @@
 </div>
 
 <div class="modal fade show" [class.show]="showModal">
-  <div class="modal-dialog modal-dialog-centered modal-content" role="document">
-    <div class="modal-header">
-      <h5 class="modal-title">Add Employee</h5>
-      <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="onCloseModal()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <form >
-      <div class="modal-body">
-        <div class="form-group">
-          <label>Enter Name</label>
-          <input type="text" class="form-control" formControlName="name">
-          <small class="form-text text-danger">Please Enter Name.</small>
-        </div>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" role="document">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Employee</h5>
+        <button class="btn-close" type="button" data-dismiss="modal" aria-label="Close" (click)="onCloseModal()"></button>
       </div>
-    </form>
+      <form [formGroup]="empForm" (ngSubmit)="onEmpSubmit()">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Enter Name</label>
+            <input type="text" class="form-control" formControlName="name">
+            <small *ngIf="!empForm.get('name')?.valid && empForm.get('name')?.touched" class="form-text text-danger">Please Enter Name.</small>
+          </div>
+          <div class="form-group">
+            <label>Enter Position</label>
+            <input type="text" class="form-control" formControlName="position">
+            <small *ngIf="!empForm.get('position')?.valid && empForm.get('position')?.touched" class="form-text text-danger">Please Enter Position.</small>
+          </div>
+          <div class="form-group">
+            <label>Enter Departament</label>
+            <select class="form-select" formControlName="dept">
+              <option value="Design">Design</option>
+              <option value="Development">Development</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="onCloseModal()">Close</button>
+          <button type="submit" class="btn btn-primary">{{ editMode ? 'Update Employee' : 'Add Employee' }}</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
