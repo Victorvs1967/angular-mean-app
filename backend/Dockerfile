@@ -7,4 +7,6 @@ RUN npm install
 ENV PATH="./node_modules/.bin:$PATH"
 
 COPY . ./
+EXPOSE 3000
+
 RUN node index.js

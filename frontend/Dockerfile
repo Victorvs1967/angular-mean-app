@@ -11,4 +11,4 @@ RUN ng build
 
 FROM nginx:stable
 COPY nginx.config /etc/nginx/conf.d/default.conf
-COPY --from=builder /opt/web/dist/frontend usr/share/nginx/html
+COPY --from=builder /opt/web/dist/frontend /usr/share/nginx/html

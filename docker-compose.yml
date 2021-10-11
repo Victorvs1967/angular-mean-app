@@ -9,15 +9,15 @@ networks:
 volumes:
   data:
 services:
-  database:
-    networks:
+  mongo_db:
+    networks: 
       - backend
     image: mongo
     restart: always
-    volumes:
-      - data:/data/db
     ports:
       - 27017:27017
+  volumes:
+      - data:/data/db
   api_service:
     networks:
       - backend
@@ -26,7 +26,7 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - database
+      - mongo_db
     volumes:
       - data:/data/db
   front_service:
