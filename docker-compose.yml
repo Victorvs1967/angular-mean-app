@@ -1,0 +1,40 @@
+version: "3.9"
+networks:
+  frontend:
+    external: false
+    name: frontend
+  backend:
+    external: false
+    name: backend
+volumes:
+  data:
+services:
+  database:
+    networks:
+      - backend
+    image: mongo
+    restart: always
+    volumes:
+      - data:/data/db
+    ports:
+      - 27017:27017
+  api_service:
+    networks:
+      - backend
+    build: backend/
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
+    volumes:
+      - data:/data/db
+  front_service:
+    networks:
+      - frontend
+    build: frontend/
+    restart: always
+    ports:
+      - 4200:80
+    depends_on:
+      - api_service
